@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="trail.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"  />
+
+</head>
+<body oncontextmenu="return false">
+    <div class="container"> 
+        <button onclick="pre()"><i class="fa fa-step-backward"></i></button>
+        <button onclick="cal()" id="surya"><i class="fa fa-play"></i></button>
+        <button onclick="next()"><i class="fa fa-step-forward"></i></button>
+    </div>
+    <script>
+        let body=document.querySelector('body');
+        let change=document.querySelector('surya');
+        let i=0;
+        let play_pause=false;
+        let track=document.createElement('audio');
+        let all_song=[
+            {path:"music/song1.mp3"},
+            { path:"music/song3.mp3"}
+        ];
+        function cal()
+        {
+            track.src=all_song[i].path;
+            if(play_pause==false)
+            {
+                track.play();
+                play_pause=true;
+            }
+            else
+            {
+                track.pause();
+                play_pause=false;
+            }
+        }
+        function next()
+        {
+                i+=1;
+            if(i==all_song.length)
+            {
+                i=0;
+            }
+            
+            play_pause=false;
+            cal();
+        }
+        function pre()
+        {
+            i-=1;
+            if(i<0)
+            {
+                i=all_song.length-1;
+            }
+            play_pause=false;
+            cal();
+        }
+        function colo()
+        {
+           body.style.backgroundColor="blue";
+        }
+        change.addeventlistener('click',colo);
+
+    </script>
+</body>
+</html>
